@@ -34,11 +34,21 @@ const form = document.querySelector("form.add"),
 
 
 document.addEventListener("DOMContentLoaded", () => {
+   const sortArr = (arr) => {
+      arr.sort();
+   };
+
    const addFilm = (event) => {
       event.preventDefault();
-      
       let newFilm = input.value;
+      
+      if (newFilm.length > 21) {
+         newFilm = `${newFilm.substr(0, 22)}...`;
+      }
+
       movieDB.movies.push(newFilm);
+      sortArr(movieDB.movies);
+
       addMovieList();
       form.reset();
    };
